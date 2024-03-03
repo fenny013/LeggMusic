@@ -131,6 +131,34 @@
             background-color: #1db954; /* Изменение цвета фона при наведении */
             color: #fff; /* Изменение цвета текста при наведении */
         }
+        .audio-player {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+            background-color: #1E1E1E;
+            border-radius: 10px;
+        }
+
+        .audio-player audio::-webkit-media-controls-panel {
+            background-color: #1DB954;
+            border-radius: 10px;
+        }
+
+        .audio-player audio::-webkit-media-controls-play-button {
+            background-color: #fff;
+            border-radius: 50%;
+        }
+
+        .audio-player audio::-webkit-media-controls-volume-slider-container {
+            display: none; /* Hide the volume slider */
+        }
+
     </style>
 </head>
 <body>
@@ -150,6 +178,12 @@
             <a href="https://www.youtube.com/watch?v=Uo3kp0VQVig/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077046.png" alt="Icon" width=20>YouTube</a>
             <a href="https://www.youtube.com/playlist?list=PL885lnMUjw-4n1PXY-eeJDS-MalD-YcM2/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077046.png" alt="Icon" width=20>YouTube плейлист сезона</a>
         </div>
+        <div class="audio-player">
+            <audio controls>
+                <source src="songs/skibidi-sigma-slime-ost.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>        
         <div class="links">
             <button class="custom-button" onclick="showText()">Показать текст песни</button>
         </div>

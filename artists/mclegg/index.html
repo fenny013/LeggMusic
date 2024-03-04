@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCLegg</title>
+    <link rel="icon" type="image/icon" href="icons/skibidi-sigma-slime-ost.ico">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato:400,500,700');
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden; /* Предотвращаем появление полос прокрутки */
+        }
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            background-image: url('images/skibidi-sigma-slime-ost.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: pulsate 20s linear infinite;
+            filter: blur(50px);
+        }
+        @keyframes pulsate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #1DB954;
+            border-radius: 10px;
+            background-color: #1E1E1E;
+        }
+        h1, h2, h3, h4 {
+            text-align: center;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Обводка */
+            border-radius: 10px;
+            overflow: hidden; /* Обрезаем обводку, чтобы не выходила за рамки контейнера */
+        }
+        .logo {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px; /* Добавлено свойство для закругления краев */
+        }
+        .links {
+            display: flex;
+            justify-content: center;
+        }
+        .links a {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #1DB954;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex; /* Добавлено для выравнивания текста и иконки по центру */
+            align-items: center; /* Добавлено для выравнивания текста и иконки по центру */
+        }
+        .links a.disabled {
+            opacity: .4;
+            pointer-events: none;
+            cursor: default;
+        }
+        .links a img {
+            margin-right: 5px; /* Отступ между иконкой и текстом */
+        }
+        .links a:hover {
+            background-color: #168f3e;
+        }
+        .song-text-container {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #1DB954;
+            border-radius: 10px;
+            background-color: #1E1E1E;
+            opacity: 0; /* Скрыть контейнер по умолчанию */
+            animation: fadeInOut 0.3s linear forwards; /* Анимация появления контейнера */
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .song-text {
+            text-align: center;
+            overflow: hidden;
+        }
+        .song-text p {
+            opacity: 0; /* Скрыть текст по умолчанию */
+            animation: fadeInOutText 0.3s linear forwards; /* Анимация появления текста */
+        }
+        @keyframes fadeInOutText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .song-text p span {
+            color: #888; /* Серый цвет для слов в скобках */
+        }
+        .custom-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: transparent; /* Прозрачный фон */
+            color: #1db954; /* Цвет текста */
+            border: 2px solid #1db954; /* Толщина и цвет границы */
+            border-radius: 5px; /* Закругление углов */
+            transition: background-color 0.3s, color 0.3s; /* Плавные переходы цвета */
+            cursor: pointer; /* Изменение курсора при наведении */
+            display: inline-block; /* Отображение как блочный элемент */
+        }
+        .custom-button:hover {
+            background-color: #1db954; /* Изменение цвета фона при наведении */
+            color: #fff; /* Изменение цвета текста при наведении */
+        }
+        .audio-player {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .audio-player audio {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+            background-color: #1E1E1E;
+            border-radius: 10px;
+        }
+        .audio-player audio::-webkit-media-controls-panel {
+            background-color: #1DB954;
+            border-radius: 10px;
+        }
+        .audio-player audio::-webkit-media-controls-play-button {
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        .audio-player audio::-webkit-media-controls-volume-slider-container {
+            display: none; /* Hide the volume slider */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        <img class="background-image" src="images\skibidi-sigma-slime-ost.jpeg" alt="Background Image">
+    </div>
+    <div class="container">
+        <div class="logo-container">
+            <img class="logo" src="images\skibidi-sigma-slime-ost.jpeg" alt="Logo">
+        </div>
+        <h1>MCLegg</h1>
+        <h3>соц.сети</h3>
+        <div class="links">
+            <a href="" target="_blank" class="disabled">Spotify</a>
+            <a href="" target="_blank" class="disabled">Яндекс музыка</a>
+            <a href="" target="_blank" class="disabled">Amazon music</a>
+            <a href="https://t.me/Legg200100" target="_blank">Telegram</a>
+            <a href="https://www.youtube.com/@LEGG2300" target="_blank">YouTube</a>
+        </div>
+        <div class="song-text-container" id="song-text-container">
+            <div class="song-text" id="song-text">
+                <span style="color:gray">Песни:</span></br>
+                <span style="color:gray"><a href="artists/mclegg/skibidi-sigma-slime-ost">MCLegg - OST Сезона "ШКЕБЕДЕ СИГМА СЛАЙМ"</a></span></br>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>

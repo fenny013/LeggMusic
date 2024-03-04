@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCLegg - OST Сезона "ШКЕБЕДЕ СИГМА СЛАЙМ"</title>
     <link rel="icon" type="image/icon" href="icons/skibidi-sigma-slime-ost.ico">
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato:400,500,700');
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Lato', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #121212;
@@ -74,13 +76,19 @@
             margin: 0 10px;
             padding: 10px 20px;
             background-color: #1DB954;
-            color: #fff;
+            color: #ffffff;
+            text-align: center;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex; /* Добавлено для выравнивания текста и иконки по центру */
             align-items: center; /* Добавлено для выравнивания текста и иконки по центру */
+        }
+        .links a.disabled {
+            opacity: .4;
+            pointer-events: none;
+            cursor: default;
         }
         .links a img {
             margin-right: 5px; /* Отступ между иконкой и текстом */
@@ -135,7 +143,6 @@
             margin-top: 30px;
             text-align: center;
         }
-
         .audio-player audio {
             width: 100%;
             max-width: 400px;
@@ -144,21 +151,17 @@
             background-color: #1E1E1E;
             border-radius: 10px;
         }
-
         .audio-player audio::-webkit-media-controls-panel {
             background-color: #1DB954;
             border-radius: 10px;
         }
-
         .audio-player audio::-webkit-media-controls-play-button {
             background-color: #fff;
             border-radius: 50%;
         }
-
         .audio-player audio::-webkit-media-controls-volume-slider-container {
             display: none; /* Hide the volume slider */
         }
-
     </style>
 </head>
 <body>
@@ -172,11 +175,11 @@
         <h1>MCLegg - OST Сезона "ШКЕБЕДЕ СИГМА СЛАЙМ"</h1>
         <h3>Теперь на всех площадках</h3>
         <div class="links">
-            <a href="" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/160/160187.png" alt="Icon" width=20>Spotify</a>
-            <a href="" target="_blank"><img src="https://img.icons8.com/?size=256&id=FElR8qsZtN1W&format=png" alt="Icon" width=20>Яндекс музыка</a>
-            <a href="" target="_blank"><img src="https://img.icons8.com/?size=256&id=yDlSgeIQY5lz&format=png" alt="Icon" width=20>Amazon music</a>
-            <a href="https://www.youtube.com/watch?v=Uo3kp0VQVig/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077046.png" alt="Icon" width=20>YouTube</a>
-            <a href="https://www.youtube.com/playlist?list=PL885lnMUjw-4n1PXY-eeJDS-MalD-YcM2/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1077/1077046.png" alt="Icon" width=20>YouTube плейлист сезона</a>
+            <a href="" target="_blank" class="disabled">Spotify</a>
+            <a href="" target="_blank" class="disabled">Яндекс музыка</a>
+            <a href="" target="_blank" class="disabled">Amazon music</a>
+            <a href="https://www.youtube.com/watch?v=Uo3kp0VQVig/" target="_blank">YouTube</a>
+            <a href="https://www.youtube.com/playlist?list=PL885lnMUjw-4n1PXY-eeJDS-MalD-YcM2" target="_blank">YouTube плейлист сезона</a>
         </div>
         <div class="audio-player">
             <audio controls>
@@ -189,7 +192,8 @@
         </div>
         <div class="song-text-container" id="song-text-container">
             <div class="song-text" id="song-text">
-                <span style="color:gray"">чтобы увидеть текст нажмите кнопку выше</span>
+                <span style="color:gray">бит по <a href="https://www.youtube.com/watch?v=g36-rvZLaQg">этой ссылке</a></span></br>
+                <span style="color:gray">ЭТА ПЕСНЯ ЖОСКИ РОФЛ БРАТУХИ, ТЕКСТ ВООБЩЕ НЕЕРОНКА НАПИСАЛА</span>
             </div>
         </div>
     </div>
@@ -203,9 +207,11 @@
                     var songText = xhr.responseText;
                     var textLines = songText.split('\n');
                     var songTextElement = document.getElementById('song-text');
-                    songTextElement.innerHTML = ''; // Очистить содержимое элемента
+                    //songTextElement.innerHTML = ''; // Очистить содержимое элемента
 
-                    // Добавить каждую строку текста в абзац
+                    var p = document.createElement('p');
+                            p.innerHTML = "Текст песни:";
+                            songTextElement.appendChild(p);
                     textLines.forEach(function(line, index) {
                         setTimeout(function() {
                             var p = document.createElement('p');

@@ -4,7 +4,7 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCLegg</title>
+    <title>MCLegg - Oleg</title>
     <link rel="icon" type="image/icon" href="icons/skibidi-sigma-slime-ost.ico">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Lato:400,500,700');
@@ -32,7 +32,7 @@
             left: 0;
             width: 100%;
             height: auto;
-            background-image: url('images/skibidi-sigma-slime-ost.jpeg');
+            background-image: url('images/skibidi-sigma-slime-ost.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -64,7 +64,7 @@
             overflow: hidden; /* Обрезаем обводку, чтобы не выходила за рамки контейнера */
         }
         .logo {
-            width: 200px;
+            width: auto;
             height: 200px;
             border-radius: 10px; /* Добавлено свойство для закругления краев */
         }
@@ -166,27 +166,62 @@
 </head>
 <body>
     <div class="background-container">
-        <img class="background-image" src="images\skibidi-sigma-slime-ost.jpeg" alt="Background Image">
+        <img class="background-image" src="images\oleg.jpg" alt="Background Image">
     </div>
     <div class="container">
         <div class="logo-container">
-            <img class="logo" src="images\skibidi-sigma-slime-ost.jpeg" alt="Logo">
+            <img class="logo" src="images\oleg.jpg" alt="Logo">
         </div>
-        <h1>MCLegg</h1>
-        <h3>соц.сети</h3>
+        <h1>MCLegg - Oleg <box-icon name='error-alt' color="white"></box-icon></h1>
+        <h4 style="color: #888;">Песня содержит нецензурную лексику. Ничего не пропагандируем!</h2>
+        <div class="audio-player">
+            <audio controls>
+                <source src="songs/oleg.mp3" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>        
         <div class="links">
-            <a href="" target="_blank" class="disabled">Spotify</a>
-            <a href="" target="_blank" class="disabled">Яндекс музыка</a>
-            <a href="" target="_blank" class="disabled">Amazon music</a>
-            <a href="https://t.me/Legg200100" target="_blank">Telegram</a>
-            <a href="https://www.youtube.com/@LEGG2300" target="_blank">YouTube</a>
+            <button class="custom-button" onclick="showText()">Показать текст песни</button>
         </div>
         <div class="song-text-container" id="song-text-container">
             <div class="song-text" id="song-text">
-                <span style="color:gray">Песни:</span></br>
-                <span style="color:gray"><a href="/skibidi-sigma-slime-ost">MCLegg - OST Сезона "ШКЕБЕДЕ СИГМА СЛАЙМ"</a></span></br>
+                <span style="color:gray">бит взят с песни <a href="https://www.youtube.com/watch?v=VIxYZFKW_0s">Вампир</a></span></br>
+                <!-- span style="color:gray">ЭТА ПЕСНЯ ЖОСКИ РОФЛ БРАТУХИ, ТЕКСТ ВООБЩЕ НЕЕРОНКА НАПИСАЛА</span -->
             </div>
         </div>
-    </div>  
+    </div>
+
+    <script>
+        function showText() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'texts/oleg.txt', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var songText = xhr.responseText;
+                    var textLines = songText.split('\n');
+                    var songTextElement = document.getElementById('song-text');
+                    //songTextElement.innerHTML = ''; // Очистить содержимое элемента
+
+                    var p = document.createElement('p');
+                            p.innerHTML = "Текст песни:";
+                            songTextElement.appendChild(p);
+                    textLines.forEach(function(line, index) {
+                        setTimeout(function() {
+                            var p = document.createElement('p');
+                            p.innerHTML = line;
+                            songTextElement.appendChild(p);
+                        }, index * 100); // Задержка между появлением строк
+                    });
+
+                    var songTextContainer = document.getElementById('song-text-container');
+                    songTextContainer.style.opacity = '1'; // Показать контейнер с текстом песни
+
+                    var customButton = document.querySelector('.custom-button');
+                    customButton.style.display = 'none'; // Скрыть кнопку после нажатия
+                }
+            };
+            xhr.send();
+        }
+    </script>
 </body>
 </html>
